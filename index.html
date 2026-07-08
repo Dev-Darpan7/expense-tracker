@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Expense Tracker</h2>
+      <form id="expense-form">
+        <input
+          type="text"
+          id="expense-description"
+          placeholder="Expense Name"
+          required
+        />
+        <h2>Amount</h2>
+        <input type="number" id="amount" placeholder="Amount" required />
+        <button id="addExpense" type="submit"> Add Expense</button>
+     
+     <div  id="expense-list">
+        <h2>Expenses</h2>
+      <ul>
+            <li><span>Groceries</span><span>₹500</span></li>
+            <li><span>Pizza</span><span>₹300</span></li>
+            <li><span>Netflix</span><span>₹199</span></li>
+        </ul>
+        <input type="number" id="totalAmount" placeholder="Total Amount" readonly />
+      </form>
+      </div>
+    </div>
+  </body>
+</html>
