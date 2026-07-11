@@ -16,9 +16,10 @@ let expenses = [
   },
 ];
 
-function addExpense() {
+function addExpense(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
   const description = descriptionInput.value;
-  const amount = amountInput.value;
+  const amount = parseFloat(amountInput.value);
   expenses.push({ name: description, amount: amount });
     displayExpenses();
   descriptionInput.value = "";
