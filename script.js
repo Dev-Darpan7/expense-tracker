@@ -3,6 +3,7 @@ const totalAmount = document.getElementById("totalAmount");
 const amountInput = document.getElementById("amount");
 const descriptionInput = document.getElementById("expense-description");
 const expenseList = document.getElementById("expenses");
+const clearExpenseBtn= document.getElementById("clearExpense")
 
 let expenses = [
   { name: "Groceries", amount: 500 },
@@ -48,4 +49,10 @@ const displayExpenses = () => {
       `<li><span>${expense.name}</span><span>₹${expense.amount}</span></li>`;
   });
 };
+clearExpenseBtn.addEventListener("click", () => {
+  expenses = [];
+  updateTotal();
+  displayExpenses();
+});
 displayExpenses();
+updateTotal();
