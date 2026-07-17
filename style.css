@@ -108,3 +108,21 @@ width: 55vh;
 #totalAmount:hover{
     box-shadow: 1px 2px 10px rgba(23, 20, 20, 0.8);    
 }
+
+#clearExpense{
+    display: flex;
+    background-color: #B89E9E;
+    border:none;
+    text-align:center;
+    border-radius: 6px;
+     font-size: 80%; 
+     font-style: oblique;
+     width: 90px;
+     height: 30px;
+     align-self:flex-end; /* Aligns the button to the right within the form */
+margin-left:45px;
+}
+#clearExpense:hover{
+    box-shadow: 1px 2px 10px rgba(23, 20, 20, 0.8);
+    cursor:pointer;
+}
