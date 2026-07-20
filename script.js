@@ -31,6 +31,11 @@ const addExpense = (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
   const description = descriptionInput.value;
   const amount = parseFloat(amountInput.value);
+    if (description.trim() === "" || isNaN(amount) || amount <= 0) {
+    alert("Please enter a valid expense.");
+    return;
+  }
+
   expenses.push({ name: description, amount: amount });
   updateTotal();
   displayExpenses();
