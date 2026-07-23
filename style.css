@@ -1,170 +1,220 @@
 
-*{      
-    margin:0;
-    padding:0;  
-      box-sizing: border-box; /* Prevents padding from breaking your widths */
+:root{
+    --bg: #f3f6f8;
+    --card: #ffffff;
+    --muted: #e7e2e2;
+    --accent: #6b8cff;
+    --danger: #dc3545;
+    --text: #222;
+    --radius: 12px;
+    --gap: 12px;
+    --max-width: 720px;
 }
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    height: 100%;
+}
+
 body{
-    background-color:rgba(255, 255, 255, 0.868);
-   /* 1. Turn the body into a flex container to center the .container */
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: var(--text);
+    background: linear-gradient(180deg, var(--bg), #eef3f7);
+    -webkit-font-smoothing:antialiased;
     display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center;     /* Centers vertically */
-    
-    /* 2. Give the body full viewport height so vertical centering works */
-    min-height: 100vh; 
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
 }
 
 .container{
-    background-color:#D9D9D9;
-display:flex;
-flex-direction:column;
-width:60vh;
-height:70vh;
-overflow-y:auto;/* Allows vertical scrolling if content overflows */
-border-radius: 39px;
+    width: 90%;
+    max-width: var(--max-width);
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(16,24,40,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
 
-}
-#expense-form{
-    display:flex;
-flex-direction:column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    width: 100%; /* Makes form span full width of the container */
-}
-ul{
-    list-style-type:none;
-
-}
 h2{
-    text-align:center;
-    font-size:24px;
-    font-style: oblique;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+form#expense-form{
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+input[type="text"],
+input[type="number"]{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid rgba(16,24,40,0.08);
+    background: #fff;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+input:focus, button:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(107,140,255,0.12);
+}
+
+/* Actions row */
+.form-actions{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Fallback for existing markup: style the two buttons consistently */
+#addExpense, #clearExpense{
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
 }
 
 #addExpense{
-    display: flex;
-    background-color: #B89E9E;
-    border:none;
-    text-align:center;
-    border-radius: 6px;
-     font-size: 80%; 
-     font-style: oblique;
-     width: 90px;
-     height: 30px;
-     align-self:flex-start; /* Aligns the button to the left within the form */
-margin-left:45px;
-}
-.container:hover{
-    box-shadow: 1px 8px 10px rgba(23, 20, 20, 0.8);
-
-}
-#addExpense:hover{
-    box-shadow: 1px 2px 10px rgba(23, 20, 20, 0.8);
-    cursor:pointer;
-}
-#amount{
-    border :none;
-    border-radius: 6px;
-    height: 30px;
-    background-color:#a380807e;
-}
-#expense-description{
-    border :none;
-    border-radius: 6px;
-    height: 30px;
-    background-color:#a380807e;
-
-}
-#expense-description:hover, #amount:hover{
-    box-shadow: 1px 2px 10px rgba(23, 20, 20, 0.8);
-    
-}
-#expense-list{
-    background-color:#CABABA;
-    width:55vh;
-    height:30vh;
-    overflow-y:auto;
-    border-radius: 39px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    /* justify-content:center; */
-    /* align-items:center; */
-}
-#totalAmount{
-border-radius: 6px;
-    border:none;
-    height: 30px;
-width: 55vh;
-    display:flex;
-    justify-content:space-between;
-    text-align:center;
-    font-size: 18px;
-    font-style: oblique;
-    margin-top: 10px;
-}
-#totalAmount:hover{
-    box-shadow: 1px 2px 10px rgba(23, 20, 20, 0.8);    
+    background: var(--accent);
+    color: white;
 }
 
 #clearExpense{
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(16,24,40,0.06);
+}
+
+#addExpense:hover{ filter: brightness(0.98); }
+#clearExpense:hover{ background: rgba(16,24,40,0.03); }
+
+#expense-list{
+    background: var(--muted);
+    border-radius: calc(var(--radius) - 4px);
+    padding: 14px;
+    overflow: auto;
     display: flex;
-    background-color: #B89E9E;
-    border:none;
-    text-align:center;
-    border-radius: 6px;
-     font-size: 80%; 
-     font-style: oblique;
-     width: 90px;
-     height: 30px;
-     align-self:flex-end; /* Aligns the button to the right within the form */
-margin-left:45px;
+    flex-direction: column;
+    gap: 10px;
 }
-#clearExpense:hover{
-    box-shadow: 1px 2px 10px rgba(23, 20, 20, 0.8);
-    cursor:pointer;
-}
-
-
 
 #expenses{
-    margin-top: 15px;
-    padding: 0 15px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #expenses li{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    background:white;
-    margin-bottom:12px;
-    padding:12px 15px;
-
-    border-radius:8px;
+    background: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 2px 6px rgba(16,24,40,0.03);
 }
 
 #expenses button{
-    background:#dc3545;
-    color:white;
-
-    border:none;
-    border-radius:6px;
-
-    padding:8px 12px;
-
-    cursor:pointer;
-
-    transition:.3s;
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-#expenses button:hover{
-    background:#bb2d3b;
+#expenses button:hover{ opacity: 0.95; }
+
+#expenses span.amount{
+    color: #0b6b07;
+    font-weight: 600;
 }
 
-#expenses span:nth-child(2){
-    color:green;
-    font-weight:bold;
+#totalAmount{
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(16,24,40,0.06);
+    background: #fff;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Responsive tweaks */
+@media (min-width: 720px){
+    form#expense-form{
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+    input[type="text"], input[type="number"]{ max-width: 320px; }
+    .form-actions{ margin-left: auto; }
+}
+
+@media (max-width: 420px){
+    .container{ padding: 16px; }
+    h2{ font-size: 1.1rem; }
+}
+
+/* --- Animations & Micro-interactions (kept subtle) --- */
+
+/* Entrance for container */
+.container{
+    animation: containerFadeIn 420ms ease both;
+}
+
+@keyframes containerFadeIn{
+    from{ transform: translateY(8px); opacity: 0; }
+    to{ transform: translateY(0); opacity: 1; }
+}
+
+/* Subtle lift on hover */
+.container:hover{ transform: translateY(-4px); transition: transform 220ms ease; }
+
+/* Inputs and buttons transitions */
+input[type="text"], input[type="number"], #addExpense, #clearExpense, #expenses button{
+    transition: box-shadow 180ms ease, transform 160ms ease, background-color 180ms ease, opacity 160ms ease;
+}
+
+/* Buttons micro-interaction */
+#addExpense:hover, #clearExpense:hover{
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Expense list item entrance */
+#expenses li{
+    animation: fadeInUp 320ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes fadeInUp{
+    from{ transform: translateY(6px); opacity: 0; }
+    to{ transform: translateY(0); opacity: 1; }
+}
+
+/* small pop for add button when clicked (active state) */
+#addExpense:active{ transform: scale(0.98); }
+
+/* Danger button hover pop */
+#expenses button:hover{ transform: translateY(-2px); }
+
+/* Accessible reduced motion preference */
+@media (prefers-reduced-motion: reduce){
+    .container, #expenses li, input, button{ animation: none !important; transition: none !important; transform: none !important; }
 }
